@@ -1,15 +1,16 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Stem = styled.div<{
   $idx?: number;
+  $isRna?: boolean;
 }>`
-  width: 900px;
   position: relative;
   left: ${({ $idx }) =>
     $idx != undefined
       ? $idx > 1
-        ? `${-870 + ($idx - 1) * 71.66 + 81.66}px`
-        : `${-870 + $idx * 81.66}px`
+        ? `${-923 + ($idx - 1) * 76.92 + 83.92}px`
+        : `${-923 + $idx * 83.92}px`
       : 0};
   transition: left 0.3s ease-in-out;
 `;
@@ -24,13 +25,13 @@ export const Bar = styled.div`
 export const BaseList = styled.ul<{ $isRna?: boolean }>`
   display: grid;
   grid-template-columns: ${(props) =>
-    props.$isRna ? "repeat(4, 1fr)" : "repeat(12, 1fr)"};
+    props.$isRna ? "repeat(20, 1fr)" : "repeat(12, 54px)"};
   gap: 23px;
   height: 80px;
   padding: 0 30px;
 `;
 
-export const Base = styled.li<{
+export const Base = styled(motion.li)<{
   $backgroundColor: string;
   $type: string;
 }>`
@@ -47,7 +48,6 @@ export const Base = styled.li<{
   font-weight: bold;
   cursor: ${({ $type }) => ($type == "dna" ? "pointer" : "default")};
   transition: background-color 0.25s ease-in-out;
-  box-sizing: border-box;
   ${(props) =>
     props.$type == "dna"
       ? `
@@ -61,7 +61,7 @@ export const Base = styled.li<{
 
 export const Group = styled.section<{ $isExist: boolean }>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 54px);
   gap: 23px;
   ${(props) =>
     props.$isExist

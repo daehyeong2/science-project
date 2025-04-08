@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
   value: IdxState;
@@ -7,7 +7,7 @@ interface InitialState {
 type IdxState = number;
 
 const initialState = {
-  value: 0,
+  value: 12,
 } as InitialState;
 
 export const idx = createSlice({

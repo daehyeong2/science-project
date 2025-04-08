@@ -11,6 +11,7 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   gap: 70px;
+  align-items: center;
 `;
 
 export const Title = styled.h1`
