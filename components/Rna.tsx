@@ -3,6 +3,9 @@
 import { useAppSelector } from "@/app/hooks";
 import * as S from "../styles/Stem";
 import { BaseState } from "@/redux/slices/base-slice";
+import {AppDispatch} from "@/redux/store";
+import {setResult} from "@/redux/slices/result-slice";
+import {useDispatch} from "react-redux";
 
 export interface convertInterface {
   [key: string]: BaseState;
@@ -28,8 +31,20 @@ const DnaToRna: convertInterface = {
 };
 
 const Rna = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const values = useAppSelector((state) => state.baseReducer.value);
   const idx = useAppSelector((state) => state.idxReducer.value);
+
+  const getRna = (idx: number) => {
+    return DnaToRna[values[idx].name];
+  }
+  const onClick = (idx: number) => {
+    let result = "";
+    for(let i = idx; i <= idx+2; i++){
+      result += getRna(i).name;
+    }
+    dispatch(setResult(result));
+  }
   return (
     <S.Stem $idx={idx} $isRna>
       <S.Bar />
@@ -40,6 +55,7 @@ const Rna = () => {
             <S.Group
               $isExist={current_group_idx >= 24 && current_group_idx < 36}
               key={group_idx}
+              onClick={() => onClick(current_group_idx-24)}
             >
               {[...Array(3)].map((_, item_idx) => {
                 const map_idx = group_idx * 3 + item_idx;

@@ -4,12 +4,14 @@ import Dna from "@/components/Dna";
 import * as S from "../styles/Home";
 import Rna from "@/components/Rna";
 import Controls from "@/components/Controls";
+import Result from "@/components/Result";
 
 export default function Home() {
   return (
     <S.Screen>
-      <S.Title>DNA에서 RNA로 유전 정보가 전사되는 과정을 알아보자</S.Title>
+      <S.Title>각 코돈은 어떤 아미노산을 지정할까?</S.Title>
       <S.Container>
+        <Result />
         <Rna />
         <Dna />
         <Controls />
